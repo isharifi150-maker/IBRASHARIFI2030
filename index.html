@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
@@ -246,9 +246,6 @@
                 width: 100%;
                 font-size: 10pt !important; 
                 padding: 3px 0 !important;
-                /* إضافة الخصائص لضمان طباعة الخلفية الزرقاء في التذييل */
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
             }
 
             @page { 
@@ -280,9 +277,6 @@
                 padding: 5px 10px !important;
                 background-color: #003366 !important;
                 color: white !important;
-                /* 👈 تم إضافة السطرين هنا للهيدر */
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
             }
             header h2 {
                 font-size: 13pt !important;
@@ -297,9 +291,6 @@
                 background-color: #003366 !important; 
                 color: white !important;
                 border-color: #ccc !important;
-                /* 👈 تم إضافة السطرين هنا لرؤوس الجداول */
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
             }
             
             .chart-section-title {
@@ -311,9 +302,6 @@
                 color: white !important; 
                 box-shadow: none !important;
                 border-radius: 0 !important; 
-                /* 👈 تم إضافة السطرين هنا لعناوين الأقسام */
-                -webkit-print-color-adjust: exact; 
-                print-color-adjust: exact;
             }
             
             .charts-container {
@@ -347,7 +335,6 @@
                 text-align: initial !important; 
             }
         }
-        
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -737,5 +724,3 @@
     </script>
 </body>
 </html>
-
-
