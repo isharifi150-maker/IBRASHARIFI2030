@@ -655,7 +655,7 @@
 
             try {
                 // المعامل ?sid= للربط الصحيح مع سكريبت جوجل
-                const response = await fetch(`${API_BASE_URL}?sid=${id}`); 
+                const response = await fetch(`${API_BASE_URL}?sid=${sid}`); 
 
                 if (!response.ok) {
                     throw new Error(`فشل في جلب البيانات: ${response.statusText}`);
@@ -724,3 +724,4 @@
     </script>
 </body>
 </html>
+
