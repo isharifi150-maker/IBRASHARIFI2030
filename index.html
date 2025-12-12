@@ -623,7 +623,13 @@
             
             activeCharts.push(newChart);
         }
-
+function getEstimateFromDegree(deg) {
+  if (deg <= 9) return "ضعيف";
+  if (deg >= 10 && deg <= 15) return "جيد";
+  if (deg >= 16 && deg <= 17) return "جيد جدًا";
+  if (deg >= 18) return "ممتاز";
+  return "-";
+}
         // دالة البحث الرئيسية
         async function searchStudent() {
             const id = document.getElementById("idNumber").value;
@@ -662,7 +668,9 @@
                 }
 
                 const data = await response.json();
-                
+                // آخر درجات فعلية وصلت من السكربت
+const lastWeek = data.weekly_scores.at(-1);
+
                 // التحقق من أن البيانات المرجعة صحيحة وتحتوي على الحقول الرئيسية
                 if (!data || !data.subjects || !data.weekly_scores || !data.name) {
                     if (Object.keys(data).length === 0) {
@@ -677,15 +685,18 @@
                 document.getElementById("studentId").textContent = data.civil_id;
                 document.getElementById("studentGrade").textContent = data.grade;
                 
-                // تحديث درجات المواد 
-                document.getElementById("mathDegree").textContent = data.subjects[0].degree;
-                document.getElementById("arabicDegree").textContent = data.subjects[1].degree;
-                document.getElementById("scienceDegree").textContent = data.subjects[2].degree;
-                
-                document.getElementById("mathRow").cells[2].textContent = data.subjects[0].estimate;
-                document.getElementById("arabicRow").cells[2].textContent = data.subjects[1].estimate;
-                document.getElementById("scienceRow").cells[2].textContent = data.subjects[2].estimate;
+               // تحديث درجات المواد (آخر أسبوع فقط)
+document.getElementById("mathDegree").textContent    = lastWeek.math;
+document.getElementById("arabicDegree").textContent = lastWeek.arabic;
+document.getElementById("scienceDegree").textContent= lastWeek.science;
+document.getElementById("mathRow").cells[2].textContent =
+  getEstimateFromDegree(lastWeek.math);
 
+document.getElementById("arabicRow").cells[2].textContent =
+  getEstimateFromDegree(lastWeek.arabic);
+
+document.getElementById("scienceRow").cells[2].textContent =
+  getEstimateFromDegree(lastWeek.science);
 
                 // استخلاص البيانات للرسوم البيانية
                 const weeklyDataMath = data.weekly_scores.map(score => score.math);
